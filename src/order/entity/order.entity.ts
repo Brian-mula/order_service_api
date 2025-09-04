@@ -1,5 +1,5 @@
 import { User } from "src/user/entity/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, VersionColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn, VersionColumn } from "typeorm";
 
 export enum OrderStatus {
     PENDING = 'PENDING',
@@ -27,4 +27,10 @@ export class Order {
 
     @VersionColumn()
     version: number;
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
 }
