@@ -1,4 +1,4 @@
-import { ConflictException, HttpException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, ForbiddenException, HttpException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRole } from 'src/user/entity/user.entity';
 import { Repository } from 'typeorm';
@@ -16,7 +16,7 @@ export class OrderService {
 
     async newOrder(orderDto:NewOrderDto,user:jwtPayloadType){
         try {
-            if(!user || user.role !== UserRole.USER) {
+            if( user.role !== UserRole.USER) {
                 throw new UnauthorizedException('You are not authorized to perform this action');
             }
 
@@ -75,7 +75,7 @@ export class OrderService {
     async updateOrderStatus(orderId:string,updateDto:UpdateOrderStatusDto,user:jwtPayloadType){
         try {
            if(user.role !== UserRole.ADMIN){
-            throw new UnauthorizedException('You are not authorized to perform this action');
+            throw new ForbiddenException('You are not authorized to perform this action');
            }
            const order = await this.orderRepository.findOne({ where: { id: orderId } });
               if(!order){

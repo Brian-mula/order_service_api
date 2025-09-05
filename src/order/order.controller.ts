@@ -7,12 +7,12 @@ import { NewOrderDto } from './dto/new-order.dto';
 import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
 import { OrderService } from './order.service';
 
-@Controller('order')
+@Controller('orders')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
-  @UseGuards(JwtAuthGuard)
   @UseGuards(UserThrottlerGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   async newOrder(@Body()orderDto:NewOrderDto,@CurrentUser()user:jwtPayloadType) {
     return this.orderService.newOrder(orderDto,user);
@@ -31,6 +31,7 @@ export class OrderController {
     
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getOrderById(@Param('id')id:string,@CurrentUser()user:jwtPayloadType) {
     return this.orderService.getOrderById(id,user);

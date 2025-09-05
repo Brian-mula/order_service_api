@@ -1,12 +1,12 @@
-import { Order } from 'src/order/entity/order.entity';
 import {
-    Column,
-    CreateDateColumn,
-    Entity,
-    OneToMany,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn,
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
+import { Order } from '../../order/entity/order.entity';
 
 export enum UserRole {
   ADMIN = 'admin',

@@ -1,5 +1,5 @@
-import { User } from "src/user/entity/user.entity";
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn, VersionColumn } from "typeorm";
+import { User } from "../../user/entity/user.entity";
 
 export enum OrderStatus {
     PENDING = 'PENDING',

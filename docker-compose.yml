@@ -29,5 +29,14 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+
+  test:
+    build: .
+    command: npm run test:e2e
+    container_name: order_service_test
+    env_file: .env
+    depends_on:
+      - db
+
 volumes:
   postgres_data:

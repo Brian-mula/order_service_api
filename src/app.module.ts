@@ -27,6 +27,7 @@ import { UserModule } from './user/user.module';
         __dirname + '/**/*.entity{.ts,.js}',
       ],
       synchronize: true,
+      dropSchema: process.env.NODE_ENV === 'test',
     }),
     UserModule,
     OrderModule,
