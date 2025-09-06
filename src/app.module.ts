@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { OrderModule } from './order/order.module';
 import { UserModule } from './user/user.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
@@ -25,12 +26,14 @@ import { UserModule } from './user/user.module';
       database: process.env.POSTGRES_DB,
       entities: [
         __dirname + '/**/*.entity{.ts,.js}',
+        
       ],
       synchronize: true,
       dropSchema: process.env.NODE_ENV === 'test',
     }),
     UserModule,
     OrderModule,
+    PaymentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
